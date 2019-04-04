@@ -2,7 +2,6 @@ import sys
 import random
 
 
-def rearrange_words(input_words):
-    rearranged_words = []
-
-    while rearranged_words > 0
+if __name__ == '__main__':
+    # remember arg 1 is file name
+    input_words = sys.argv[1:]

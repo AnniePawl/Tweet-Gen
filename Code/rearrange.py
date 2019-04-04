@@ -3,8 +3,8 @@ import random
 
 
 def rearrange_words(input_words):
+    """Randomly rearranges set of words provided as commanline args"""
     rearranged_words = []
-
     while len(rearranged_words) < len(input_words):
         rand_index = random.randint(0, len(input_words) - 1)
         rand_word = input_words[rand_index]
