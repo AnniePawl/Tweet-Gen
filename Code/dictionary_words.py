@@ -8,12 +8,15 @@ import random
 
 # Read from this file
 file = open("sample_text.txt")
+# file = open('/usr/share/dict/words', 'r')
 
 # Select Random Words, Split, and Store in a Data Type
-list_of_words = file.read().split(" ")
+list_of_words = file.read().strip().split(" ")
+# print(list_of_words)
+
 # Specify number of words you want from sample
 random_words = random.choices(list_of_words, k=int(sys.argv[1]))
-print(random_words)
+# print(random_words)
 
 
 # Form Sentence
