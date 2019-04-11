@@ -14,7 +14,7 @@ def get_words(sample_text):
 # Dictionary Histogram
 
 
-def word_counts(word_list):  # sample text list
+def dictionary_histogram(word_list):  # sample text list
     histo_dict = {}
     for word in word_list:
         if word in histo_dict:
@@ -47,9 +47,6 @@ def list_count(word_list):
     return big_list
 
 
-sample_list = get_words("sample_text.txt")
-print(list_count(sample_list))
-
 # print(word_counts(sample_list))
 
 
@@ -60,6 +57,57 @@ print(list_count(sample_list))
 # - if duplicate, increase count by 1,
 #  if not, add a new type with count of one
 
-def tuple(word_list):
-    dict_tuple = ()
+def tuple_dict(word_list):
+    outer_list = []
+    # found = False
     for word in word_list:
+        current_tuple = (word, 1)
+        for element in outer_list:
+            print("cheese")
+            if word == current_tuple[0]:
+                new_tuple = current_tuple[1] + 1
+                del current_tuple
+                outer_list.append(new_tuple)
+                break
+            else:
+                outer_list.append(current_tuple)
+    return outer_list
+
+
+def list_count(word_list):
+    big_list = []
+    for word in word_list:
+        for baby_tuple in big_list:
+            if word == baby_tuple[0]:
+                count = baby_tuple[1]
+                new_tuple = (word, count+1)
+                # remove the old tuple
+                big_list.remove(baby_tuple)
+
+                # add the new tuple to big list
+                big_list.append(new_tuple)
+
+                # stop iterating if you come across word
+                break
+        # If we dont come across word, add word
+        else:
+            tuple_to_append = (word, 1)
+            big_list.append(tuple_to_append)
+    return big_list
+
+
+word_list = get_words('fish.txt')
+counts = list_count(word_list)
+print(counts)
+
+# for current_tuple in big_list:
+#     if word == tuple_dict[0]:
+#         # varaible to hold new value (increment by 1)
+#         new_tuple_count = current_tuple[1] += 1
+#         # delete old tuple  (del keyword)
+#         del current_tuple[index]
+# create new tuple -- word [0], [1] (variable)
+
+
+sample_list = get_words("sample_text.txt")
+print(tuple_dict(sample_list))
