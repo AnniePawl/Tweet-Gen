@@ -1,42 +1,33 @@
-def tuple_dict(word_list):
+
+def get_words(sample_text):
+    """ reads file, strips leading and trailer characters, returns list of stings"""
+    words = []
+    with open("sample_text.txt") as f:  # closes file when done
+        sample_text = f.read().strip().split(" ")
+        return sample_text  # this is a list of words
+
+# Above function can also be imported!
+    # from random_dictionary_words import get_words
+
+
+def histogram_tuple(word_list):
+    """ Takes in source text, returns histogram data structure that stores unique words and their number of occurances as a list of tuples """
     outer_list = []
-    # found = False
     for word in word_list:
-        current_tuple = (word, 1)
-        for element in outer_list:
-            print("cheese")
-            if word == current_tuple[0]:
-                new_tuple = current_tuple[1] + 1
-                del current_tuple
+        for baby_tuple in outer_list:
+            if word == baby_tuple[0]:
+                count = baby_tuple[1]
+                # varaible to hold new tuple b/c old tuple can't be modified
+                new_tuple = (word, count+1)
+                # remove old tuple b/c it's count is inaccurate now
+                outer_list.remove(baby_tuple)
                 outer_list.append(new_tuple)
-                break
-            else:
-                outer_list.append(current_tuple)
+                break  # stop iterating if you come across word
+        else:
+            tuple_to_append = (word, 1)
+            outer_list.append(tuple_to_append)
     return outer_list
 
 
-def list_count(word_list):
-    big_list = []
-    for word in word_list:
-        for baby_tuple in big_list:
-            if word == baby_tuple[0]:
-                count = baby_tuple[1]
-                new_tuple = (word, count+1)
-                # remove the old tuple
-                big_list.remove(baby_tuple)
-
-                # add the new tuple to big list
-                big_list.append(new_tuple)
-
-                # stop iterating if you come across word
-                break
-        # If we dont come across word, add word
-        else:
-            tuple_to_append = (word, 1)
-            big_list.append(tuple_to_append)
-    return big_list
-
-
-word_list = get_words('fish.txt')
-counts = list_count(word_list)
-print(counts)
+word_list = get_words('sample_text.txt')
+print(histogram_tuple(word_list))
