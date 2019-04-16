@@ -13,8 +13,8 @@ def histogram(phrase):
     return dict_histogram
 
 
-def sample_by_frequency(dict_histogram):
-    random_num = random.uniform(0, 8)
+def sample_by_frequency(dict_histogram, t):
+    random_num = random.uniform(0, t)
     num = 0
     for word in dict_histogram:
         count = dict_histogram[word]
@@ -25,9 +25,12 @@ def sample_by_frequency(dict_histogram):
 
 if __name__ == '__main__':
     phrase = histogram("one fish two fish red fish blue fish".split(" "))
+    sample_list = 'spider ant butterfly'.split()
+    bugs = histogram(sample_list)
     # print(phrase)
     words = []
     for _ in range(0, 100000):
-        words.append(sample_by_frequency(phrase))
-    print(words)
+        words.append(sample_by_frequency(bugs, len(sample_list)))
+    # print(words)
+
     print(histogram(words))
