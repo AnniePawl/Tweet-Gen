@@ -12,7 +12,9 @@ def get_words(sample_text):
 
 def histogram_tuple(word_list):
     """ Takes in source text, returns histogram data structure that stores unique words and their number of occurances as a list of tuples """
+    # Initiate a list to hold all tuples
     outer_list = []
+    # Loop over word list to add tuples with new word type and modify (by creating a new tuple and deleting the old) tuples when duplicate type found
     for word in word_list:
         for baby_tuple in outer_list:
             if word == baby_tuple[0]:

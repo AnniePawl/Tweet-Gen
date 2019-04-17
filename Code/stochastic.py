@@ -3,7 +3,7 @@ import random
 
 # CREATE a DICTIONARY of WORDS
 def histogram(phrase):
-    ''' Returns unique values and the number of occurances of each'''
+    """Returns unique values and the number of occurances of each"""
     dict_histogram = {}
     for word in phrase:
         if word not in dict_histogram:
@@ -14,7 +14,9 @@ def histogram(phrase):
 
 
 def sample_by_frequency(dict_histogram, t):
+    """ Returns a random word selected based on relative probability """
     random_num = random.uniform(0, t)
+    # random.random()
     num = 0
     for word in dict_histogram:
         count = dict_histogram[word]
@@ -28,6 +30,7 @@ if __name__ == '__main__':
     sample_list = 'spider ant butterfly'.split()
     bugs = histogram(sample_list)
     # print(phrase)
+    # Try Sum Function - Store once and hold in variable b/c total tokens will remain the same
     words = []
     for _ in range(0, 100000):
         words.append(sample_by_frequency(bugs, len(sample_list)))
