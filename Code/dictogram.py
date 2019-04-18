@@ -1,5 +1,3 @@
-#!python
-
 from __future__ import division, print_function  # Python 2 and 3 compatibility
 
 
@@ -19,20 +17,24 @@ class Dictogram(dict):
 
     def add_count(self, word, count=1):
         """Increase frequency count of given word by given count amount."""
-       self.tokens = 1
-       if word in self:
-           self[word] += 1
-           print(word)
-        else: self[word] = 1
+        # Increase word frequency by count
+        self.tokens = 1
+        if word in self:
+            self[word] += 1
             print(word)
-            self.types += 1 
+        else:
+            self[word] = 1
+            print(word)
+            self.types += 1
 
     def frequency(self, word):
         """Return frequency count of given word, or 0 if word is not found."""
-       if word in self:
-           return self[word]
+        # TODO: Retrieve word frequency count
+        if word in self:
+            return self[word]
         else:
             return 0
+
 
 def print_histogram(word_list):
     print('word list: {}'.format(word_list))
