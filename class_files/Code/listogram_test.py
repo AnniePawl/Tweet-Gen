@@ -82,6 +82,7 @@ class ListogramTest(unittest.TestCase):
         histogram = Listogram(self.fish_words)
         # Verify count of distinct word types
         assert len(set(self.fish_words)) == 5
+        print("Histogram", histogram)
         assert histogram.types == 5
         # Adding words again should not change count of distinct word types
         for word in self.fish_words:
