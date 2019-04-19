@@ -14,5 +14,5 @@ app = Flask(__name__)
 def random_bugs():
     """ Returns a random bug """
     bugs = histogram('spider ant butterfly'.split())
-    random_bug = sample_by_frequency(bugs)
+    random_bug = sample_by_frequency(bugs, 3)
     return HTML.format(random_bug)
