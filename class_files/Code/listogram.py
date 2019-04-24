@@ -20,11 +20,20 @@ class Listogram(list):
     def add_count(self, word, count=1):
         """Increase frequency count of given word by given count amount."""
         # Check words(stored at index 0),if you find duplicate word, increase count(tokens(stored atindex[1]) by one.
-        if word in self:
+        for index in range(len(self)):
+            pair = self[index]
+            current_word, count = pair
+            ...
+            # if i've seen this word before
+        for index, pair in enumerate(self):
+            current_word, count = pair
+            ...
+        for pair in self:  # Have seen word before
+            current_word, count = pair
             self[index][1] += count
             self.tokens += count
         else:
-            # If you don't see word already, add it with a count of 1
+            # If you haven't see word already, add it with a count of 1
             self.types += 1
             self.tokens += count
             self.append([word, count])
