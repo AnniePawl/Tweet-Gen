@@ -2,11 +2,19 @@ from random_dictionary_words import get_words
 
 
 class Markov_Chain(dict):
-    """ Generates a random sentence """
-# States linked together by transitions
-# How often does a token appear after another token?
+    def __init__(self.word_list):
+        self.word_list = word_list
 
-# Do a random walk on Markov Chain (pick a way to store it )
+        self.tokens = 0
+        self.types = 0
+
+        if word_list is not None:
+            self.make_chain(word_list)
+
+    # States linked together by transitions
+    # How often does a token appear after another token?
+
+    # Do a random walk on Markov Chain (pick a way to store it )
 
 
 def markov_chain_walk():

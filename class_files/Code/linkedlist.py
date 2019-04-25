@@ -1,10 +1,7 @@
-#!python
-
-
 class Node(object):
 
     def __init__(self, data):
-        """Initialize this node with the given data."""
+        """Initialize node with the given data."""
         self.data = data
         self.next = None
 
@@ -19,8 +16,8 @@ class LinkedList(object):
         """Initialize this linked list and append the given items, if any."""
         self.head = None  # First node
         self.tail = None  # Last node
-        # Append given items
-        if items is not None:
+
+        if items is not None:  # Append given items
             for item in items:
                 self.append(item)
 
@@ -55,13 +52,26 @@ class LinkedList(object):
     def length(self):
         """Return the length of this linked list by traversing its nodes.
         TODO: Running time: O(???) Why and under what conditions?"""
-        # TODO: Loop through all nodes and count one for each
+        counter = 0  # Count starts at zero
+        current_node = self.head
+        while current_node is not None:  # is something in the list?
+            # if so, iterate over all nodes
+            current_node = current_node.next  # reassign current node
+            counter += 1  # increase instance of word count by 1
+        return counter
 
     def append(self, item):
         """Insert the given item at the tail of this linked list.
         TODO: Running time: O(???) Why and under what conditions?"""
-        # TODO: Create new node to hold given item
+        # Create new node to hold given item
+        new_node = Node(item)
         # TODO: Append node after tail, if it exists
+        if self.tail is not None:  # Check if something is in list
+            self.tail.next = new_node  # add node right at end (after tail)
+            self.tail = new_node  # newly added node is now tail
+        else:
+            self.head = new_node  # If nothing in list, create first node!
+            self.tail = new_node  # First and only node = head AND tail
 
     def prepend(self, item):
         """Insert the given item at the head of this linked list.
