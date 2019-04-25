@@ -52,10 +52,12 @@ class ListogramTest(unittest.TestCase):
     def test_add_count(self):
         histogram = Listogram(self.fish_words)
         # Add more words to update frequency counts
+        print("Testing: ", histogram)
         histogram.add_count('two', 2)
         histogram.add_count('blue', 3)
         histogram.add_count('fish', 4)
         histogram.add_count('food', 5)
+        print("Adding: ", histogram)
         # Verify updated frequency count of all words
         assert histogram.frequency('one') == 1
         assert histogram.frequency('two') == 3
