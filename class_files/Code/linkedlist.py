@@ -47,15 +47,16 @@ class LinkedList(object):
 
     def is_empty(self):
         """Return a boolean indicating whether this linked list is empty."""
-        return self.head is None
+        return self.head is None  # O(1), just checking 1 value
 
     def length(self):
         """Return the length of this linked list by traversing its nodes.
         TODO: Running time: O(???) Why and under what conditions?"""
         counter = 0  # count starts at zero
         current_node = self.head
-        while current_node is not None:  # is something there?
-            # if so, iterate over all nodes
+        # is something there?
+        # O(n), must iterate over each item (n nodes) to count them
+        while current_node is not None:
             current_node = current_node.next  # reassign current node
             counter += 1  # increase instance of word count by 1
         return counter
@@ -102,10 +103,13 @@ class LinkedList(object):
         TODO: Best case running time: O(???) Why and under what conditions?
         TODO: Worst case running time: O(???) Why and under what conditions?"""
         # TODO: Loop through all nodes to find one whose data matches given item
-
+        if self.head == item  # Is item first node?
+        self.head == self.head.next  # if so, reassign head
         # TODO: Update previous node to skip around node with matching data
         # TODO: Otherwise raise error to tell user that delete has failed
-        # Hint: raise ValueError('Item not found: {}'.format(item))
+
+        if self.head is None:  # Raise error if list is empty
+            raise ValueError('Item not found: {}'.format(item))
 
 
 def test_linked_list():
