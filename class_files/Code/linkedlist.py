@@ -104,6 +104,17 @@ class LinkedList(object):
         if current_node == None:
             return None
 
+    # This method still needs to be tested
+    def replace(old_item, new_item):
+        """ Replaces old item with new item without creating new node"""
+        current_node = self.head
+        while current_node is not None:
+            if current_node.data == old_item:
+                current_node.data = new_item
+                return
+            else:
+                raise ValueError('Item not found: {}'.format(item))
+
     def delete(self, item):
         """Delete the given item from this linked list, or raise ValueError.
         TODO: Best case running time: O(???) Why and under what conditions?
