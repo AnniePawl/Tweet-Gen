@@ -129,6 +129,9 @@ class LinkedList(object):
                 self.tail = None
             return
 
+        prev_node = self.head
+        curr_node = prev_node.next
+
         while current_node is not None and current_node.data != item:
             # Keep looping through until item found
             previous_node = previous_node.next
@@ -138,6 +141,8 @@ class LinkedList(object):
             previous_node = current_node.next  # Reassign node, skip item
             if current_node == self.tail:  # Check if item at tail
                 self.tail = previous_node  # If so, reassign pointer
+            else:
+                raise ValueError('Item not found: {}'.format(item))
 
 
 def test_linked_list():
