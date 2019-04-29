@@ -84,32 +84,49 @@ class LinkedList(object):
             # newest node is prepended (becomes head node)
             new_node.next = self.head
             self.head = new_node  # reassign head node
+        else:
+            self.head = new_node
+            self.tail = new_node
 
     def find(self, quality):  # how to deal w/ quality ?
+        # Best case running time
+        # Worse case running time
         """Return an item from this linked list satisfying the given quality.
         TODO: Best case running time: O(???) Why and under what conditions?
         TODO: Worst case running time: O(???) Why and under what conditions?"""
         # TODO: Loop through all nodes to find item where quality(item) is True
         current_node = self.head  # start from beginning
         while current_node is not None:  # is something there?
-            current_node = current_node.next
-        if current_node is None:
+            if quality(current_node.data):  # Does it satisfy quality?
+                return current_node.data
+            else:
+                current_node = current_node.next
+        if current_node == None:
             return None
-
-        # TODO: Check if node's data satisfies given quality function
 
     def delete(self, item):
         """Delete the given item from this linked list, or raise ValueError.
         TODO: Best case running time: O(???) Why and under what conditions?
         TODO: Worst case running time: O(???) Why and under what conditions?"""
-        # TODO: Loop through all nodes to find one whose data matches given item
-        if self.head == item  # Is item first node?
-        self.head == self.head.next  # if so, reassign head
-        # TODO: Update previous node to skip around node with matching data
-        # TODO: Otherwise raise error to tell user that delete has failed
 
         if self.head is None:  # Raise error if list is empty
             raise ValueError('Item not found: {}'.format(item))
+
+        if self.head.data == item:  # Is item in first node?
+            self.head == self.head.next  # Skip around node w/ matching data
+            if self.head is None:
+                self.tail = None
+            return
+
+        while current_node is not None and current_node.data != item:
+            # Keep looping through until item found
+            previous_node = previous_node.next
+            current_node = previous_node.next
+
+        if current_node is not None and current_node.data == item:
+            previous_node = current_node.next  # Reassign node, skip item
+            if current_node == self.tail:  # Check if item at tail
+                self.tail = previous_node  # If so, reassign pointer
 
 
 def test_linked_list():

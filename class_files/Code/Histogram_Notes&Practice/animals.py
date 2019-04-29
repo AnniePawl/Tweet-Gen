@@ -29,3 +29,27 @@ def print_pretty_table(animal_counts_histogram):
 animal_list = get_words('animals.txt')
 print(animal_counts_histogram(animal_list))
 print(print_pretty_table(animal_counts_histogram))
+
+
+def find_animals_mvp():
+    def is_animals(animal):
+        if animal.startswith('t'):
+            return True
+
+
+def find_animals():
+    return animal
+
+
+condition = animal.startswith('t')
+
+
+current_node = self.head
+# Loop until Node is None
+while current_node is not None:
+    # Check if node's data satisfies quality
+    if quality(curret_node.data):
+        # return data that satisfies quality
+        return current_node.data
+    else:  # otherwise skip to next node
+        current_node = current_node.next

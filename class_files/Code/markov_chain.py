@@ -14,11 +14,9 @@ class Markov_Chain(dict):
     # States linked together by transitions
     # How often does a token appear after another token?
 
-    # Do a random walk on Markov Chain (pick a way to store it )
-
 
 def markov_chain_walk():
-    markov_dictionary = {}
+    markov_dictionary = {}  # store in dictionary
     # starts from some state, pick random transision, follow it, and repeat
 
 
