@@ -52,8 +52,9 @@ class LinkedList(object):
         Running time: O(n), for n items in linkedlist(length)iterates over All items to count them"""
         counter = 0  # O(1) time to assign variable
         current_node = self.head  # O(1) time to assign variable
-        current_node = current_node.next  # O(1) time to assign variable
-        counter += 1  # # O(1), add count is one step
+        while current_node is not None:
+            counter += 1  # O(1), add count is one step
+            current_node = current_node.next  # O(1) time to assign variable
         return counter  # O(1) to return count
 
     def append(self, item):

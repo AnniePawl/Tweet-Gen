@@ -1,5 +1,4 @@
 #!python
-
 from linkedlist import LinkedList
 
 
@@ -75,13 +74,16 @@ class HashTable(object):
         """Return the value associated with the given key, or raise KeyError.
         TODO: Running time: O(???) Why and under what conditions?"""
         # TODO: Find bucket where given key belongs
-        index = self._bucket_index(key)
-        bucket = self.buckets[index]
         # TODO: Check if key-value entry exists in bucket
-        # item = self.buckets[index]
-        # TODO: If found, return value associated with given key
-        if item != None:
-            return item[1]
+        index = self._bucket_index(key)
+        bucket = self.buckets[index(key)]
+        # Check if key-value entry exists in bucket
+        def key_matcher(key_val): return key_val[0] == key
+        entry_found = bucket.find(key_matcher)
+
+        # If found, return value associated with given key
+        if entry_found is not None:
+            return entry_found[1]
         else:
             # TODO: Otherwise, raise error to tell user get failed
             # Hint: raise KeyError('Key not found: {}'.format(key))
