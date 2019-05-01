@@ -26,49 +26,50 @@ class HashTable(object):
 
     def keys(self):
         """Return a list of all keys in this hash table.
-        TODO: Running time: O(???) Why and under what conditions?"""
-        all_keys = []  # create list to hold all keys
-        for bucket in self.buckets:
+        Running time: O(n), must iterate over each item to append key to key list"""
+        all_keys = []  # O(1) to create empty list
+        for bucket in self.buckets:  # O(n) to iterate over all b
             for key, value in bucket.items():
-                all_keys.append(key)  # collect keys in each bucket
-        return all_keys
+                all_keys.append(key)  # O(n) to append all keys to list
+        return all_keys  # O(1) to return list
 
     def values(self):
         """Return a list of all values in this hash table.
-        TODO: Running time: O(???) Why and under what conditions?"""
-        all_values = []  # create list to hold all values
-        # TODO: Loop through all buckets
-        for bucket in self.buckets:  # Loop through all buckets
+        Running time: O(n), must iterate over all items to append all values to values list?"""
+        all_values = []  # O(1) to create empty list
+        for bucket in self.buckets:  # O(n) to iterate over all b
             for key, value in bucket.items():
-                 # TODO: Collect all values in each bucket
-                all_values.append(value)
-        return all_values
+                all_values.append(value)  # O(n) to append all values to list
+        return all_values  # O(1) to return list
 
     def items(self):
         """Return a list of all items (key-value pairs) in this hash table.
-        TODO: Running time: O(???) Why and under what conditions?"""
-        all_items = []  # list to hold all key-value entries
-        for bucket in self.buckets:
+        Running time: O(n) to collect all items and return?"""
+        all_items = []  # O(1) to create empty list
+        for bucket in self.buckets:  # O(n) to collect all items
             all_items.extend(bucket.items())
-        return all_items
+        return all_items  # O(1) to return a list
 
     # Getting Error += int and type unsupported
     def length(self):
         """Return the number of key-value entries by traversing its buckets.
-        TODO: Running time: O(???) Why and under what conditions?"""
-        length = 0
-        # TODO: Loop through all buckets
-        for bucket in self.buckets:
+        Running time: O(n), must iterate over each item to determine length?"""
+        length = 0  # O(1) to create this variable
+        for bucket in self.buckets:  # O(n) to iterate over each b
             # TODO: Count number of key-value entries in each bucket
-            length += bucket.length()
-        return length
+            length += bucket.length()  # O(1) to add 1 count
+        return length  # O(1) to return variable
 
     def contains(self, key):
         """Return True if this hash table contains the given key, or False.
         TODO: Running time: O(???) Why and under what conditions?"""
-        # TODO: Find bucket where given key belongs
-
-        # TODO: Check if key-value entry exists in bucket
+        # Find bucket where given key belongs
+        for bucket in self.buckets:
+            for current_key, value in bucket.items():
+                # TODO: Check if key-value entry exists in bucket
+                if current_key is key:
+                    return True  # O(1) to return boolean
+        return False  # O(1) to return boolean
 
     def get(self, key):
         """Return the value associated with the given key, or raise KeyError.
