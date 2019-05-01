@@ -13,11 +13,11 @@ class Node(object):
 class LinkedList(object):
 
     def __init__(self, items=None):
-        """Initialize this linked list and append the given items, if any."""
-        self.head = None  # First node
-        self.tail = None  # Last node
+        """Initialize a linked list and append the given items, if any."""
+        self.head = None
+        self.tail = None
 
-        if items is not None:  # Append given items
+        if items is not None:
             for item in items:
                 self.append(item)
 
@@ -32,10 +32,8 @@ class LinkedList(object):
 
     def items(self):
         """Return a list (dynamic array) of all items in this linked list.
-        Best and worst case running time: O(n) for n items in the list (length)
-        because we always need to loop through all n nodes to get each item."""
+        Best and worst case running time: O(n) for n items in the list (length) because we always need to loop through all n nodes to get each item."""
         items = []  # O(1) time to create empty list
-        # Start at head node
         node = self.head  # O(1) time to assign new variable
         # Loop until node is None, which is one node too far past tail
         while node is not None:  # Always n iterations because no early return
@@ -46,19 +44,17 @@ class LinkedList(object):
         return items  # O(1) time to return list
 
     def is_empty(self):
-        """Return a boolean indicating whether this linked list is empty."""
+        """Return a boolean indicating whether this linked list is empty.
+        Running time: 0(1), just checking 1 value"""
         return self.head is None  # O(1), just checking 1 value
 
     def length(self):
         """Return the length of this linked list by traversing its nodes.
-        TODO: Running time: O(???) Why and under what conditions?"""
+        Running time: O(n), for n items in linkedlist(length)iterates over All items to count them"""
         counter = 0  # count starts at zero
         current_node = self.head
-        # is something there?
-        # O(n), must iterate over each item (n nodes) to count them
-        while current_node is not None:
-            current_node = current_node.next  # reassign current node
-            counter += 1  # increase instance of word count by 1
+        current_node = current_node.next  # reassign current node
+        counter += 1  # increase instance of word count by 1
         return counter
 
     def append(self, item):
@@ -89,20 +85,19 @@ class LinkedList(object):
             self.tail = new_node
 
     def find(self, quality):  # how to deal w/ quality ?
-        # Best case running time
-        # Worse case running time
         """Return an item from this linked list satisfying the given quality.
-        TODO: Best case running time: O(???) Why and under what conditions?
-        TODO: Worst case running time: O(???) Why and under what conditions?"""
-        # TODO: Loop through all nodes to find item where quality(item) is True
-        current_node = self.head  # start from beginning
-        while current_node is not None:  # is something there?
-            if quality(current_node.data):  # Does it satisfy quality?
-                return current_node.data
+        Best case running time: O(1), if data in first node?
+        Worst case running time: O(n), if data not found"""
+        # Loop through all nodes to find item where quality(item) is True
+        current_node = self.head  # O(1)
+        while current_node is not None:  # from 1 to n iterations
+            if quality(current_node.data):  # O(1)
+                return current_node.data  # O(1)
             else:
+                # O(1), 1 step, reassign varaible
                 current_node = current_node.next
         if current_node == None:
-            return None
+            return None  # O(1)
 
     # This method still needs to be tested
     def replace(old_item, new_item):

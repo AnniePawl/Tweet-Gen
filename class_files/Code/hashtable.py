@@ -21,23 +21,22 @@ class HashTable(object):
 
     def _bucket_index(self, key):
         """Return the bucket index where the given key would be stored."""
-        # Calculate the given key's hash code and transform into bucket index
+        # calculate the given key's hash code and transform into bucket index
         return hash(key) % len(self.buckets)
 
     def keys(self):
         """Return a list of all keys in this hash table.
         TODO: Running time: O(???) Why and under what conditions?"""
-        # Collect all keys in each bucket
-        all_keys = []
+        all_keys = []  # create list to hold all keys
         for bucket in self.buckets:
             for key, value in bucket.items():
-                all_keys.append(key)
+                all_keys.append(key)  # collect keys in each bucket
         return all_keys
 
     def values(self):
         """Return a list of all values in this hash table.
         TODO: Running time: O(???) Why and under what conditions?"""
-        all_values = []  # create value list to return
+        all_values = []  # create list to hold all values
         # TODO: Loop through all buckets
         for bucket in self.buckets:  # Loop through all buckets
             for key, value in bucket.items():
@@ -48,36 +47,35 @@ class HashTable(object):
     def items(self):
         """Return a list of all items (key-value pairs) in this hash table.
         TODO: Running time: O(???) Why and under what conditions?"""
-        # Collect all pairs of key-value entries in each bucket
-        all_items = []
+        all_items = []  # list to hold all key-value entries
         for bucket in self.buckets:
             all_items.extend(bucket.items())
         return all_items
 
+    # Getting Error += int and type unsupported
     def length(self):
         """Return the number of key-value entries by traversing its buckets.
         TODO: Running time: O(???) Why and under what conditions?"""
-        counter = 0
+        length = 0
         # TODO: Loop through all buckets
         for bucket in self.buckets:
             # TODO: Count number of key-value entries in each bucket
-            counter += bucket.length
-        return counter
+            length += bucket.length()
+        return length
 
     def contains(self, key):
         """Return True if this hash table contains the given key, or False.
         TODO: Running time: O(???) Why and under what conditions?"""
         # TODO: Find bucket where given key belongs
-        index = self._bucket_index(key)
-        bucket = self.buckets[index]
+
         # TODO: Check if key-value entry exists in bucket
-        # return lambda
 
     def get(self, key):
         """Return the value associated with the given key, or raise KeyError.
         TODO: Running time: O(???) Why and under what conditions?"""
         # TODO: Find bucket where given key belongs
         index = self._bucket_index(key)
+        bucket = self.buckets[index]
         # TODO: Check if key-value entry exists in bucket
         # item = self.buckets[index]
         # TODO: If found, return value associated with given key
@@ -102,10 +100,15 @@ class HashTable(object):
         TODO: Running time: O(???) Why and under what conditions?"""
         # TODO: Find bucket where given key belongs
         index = self._bucket_index(key)
+        bucket = self.buckets[index]
         # TODO: Check if key-value entry exists in bucket
         # TODO: If found, delete entry associated with given key
+        # if found
         # TODO: Otherwise, raise error to tell user delete failed
         # Hint: raise KeyError('Key not found: {}'.format(key))
+
+        else:
+            raise KeyError('Key not found: {}'.format(key))
 
 
 def test_hash_table():
