@@ -107,8 +107,8 @@ class HashTable(object):
         # TODO: Otherwise, raise error to tell user delete failed
         # Hint: raise KeyError('Key not found: {}'.format(key))
 
-        else:
-            raise KeyError('Key not found: {}'.format(key))
+        # else:
+        #     raise KeyError('Key not found: {}'.format(key))
 
 
 def test_hash_table():
