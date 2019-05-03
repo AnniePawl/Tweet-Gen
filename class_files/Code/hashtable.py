@@ -52,18 +52,17 @@ class HashTable(object):
     # Getting Error += int and type unsupported
     def length(self):
         """Return the number of key-value entries by traversing its buckets.
-        Running time: O(n), must iterate over each item to determine length?"""
+        Running time: O(b*l) => O(n), must traverse buckets and it's items to determine length"""
         length = 0  # O(1) to create this variable
-        for bucket in self.buckets:  # O(n) to iterate over each b
-            # TODO: Count number of key-value entries in each bucket
-            length += bucket.length()  # O(1) to add 1 count
+        for bucket in self.buckets:  # O(b) to iterate over buckets
+            length += bucket.length()  # O(l) for length method
         return length  # O(1) to return variable
 
     def contains(self, key):
         """Return True if this hash table contains the given key, or False.
         TODO: Running time: O(???) Why and under what conditions?"""
         # Find bucket where given key belongs
-        for bucket in self.buckets:
+        for bucket in self.buckets:  # O(b) to traverse buckets
             for current_key, value in bucket.items():
                 # TODO: Check if key-value entry exists in bucket
                 if current_key is key:
