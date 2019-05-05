@@ -33,37 +33,37 @@ class LinkedList(object):
     def items(self):
         """Return a list (dynamic array) of all items in linked list.
         Best and worst case running time: O(n) for n items in the list (length) because we always need to loop through all n nodes to get each item."""
-        items = []  # O(1) time to create empty list
-        node = self.head  # O(1) time to assign new variable
+        items = []  # O(1) to create empty list
+        node = self.head  # O(1) to assign new variable
         # Loop until node is None, which is one node too far past tail
         while node is not None:  # O(n) always n iterations, no early return
-            items.append(node.data)  # O(1) time (on average) to append to list
+            items.append(node.data)  # O(1)(on average) to append to list
             # Skip to next node to advance forward in linked list
-            node = node.next  # O(1) time to reassign variable
-        return items  # O(1) time to return list
+            node = node.next  # O(1) to reassign variable
+        return items  # O(1) to return list
 
     def is_empty(self):
         """Return a boolean indicating whether this linked list is empty.
         Running time: 0(1), just checking 1 value"""
-        return self.head is None  # O(1), just checking 1 value
+        return self.head is None  # O(1) to check one value
 
     def length(self):
         """Return the length of this linked list by traversing its nodes.
-        Running time: O(n), for n items in linkedlist(length)iterates over All items to count them"""
-        counter = 0  # O(1) time to assign variable
-        current_node = self.head  # O(1) time to assign variable
+        Running time: O(n), for n items in linkedlist(length). Iterates over All items to count them"""
+        counter = 0  # O(1) to assign variable
+        current_node = self.head  # O(1) to assign variable
         while current_node is not None:
-            counter += 1  # O(1), add count is one step
-            current_node = current_node.next  # O(1) time to assign variable
+            counter += 1  # O(1) to increase count by 1
+            current_node = current_node.next  # O(1) to assign variable
         return counter  # O(1) to return count
 
     def append(self, item):
         """Insert the given item at the tail of this linked list.
         Running time: O(1), one step, simply adding item to end """
-        new_node = Node(item)
-        if self.tail is not None:  #
-            self.tail.next = new_node  # O(1) time to reassign next pointer
-            self.tail = new_node  # O(1) time to reassign tail
+        new_node = Node(item)  # O(1) to assign variable
+        if self.tail is not None:
+            self.tail.next = new_node  # O(1) to reassign next pointer
+            self.tail = new_node  # O(1) to reassign tail pointer
         else:
             # if nothing in list, create first node! first and only node = head AND tail
             self.head = new_node  # O(1) to assign new variable
@@ -73,25 +73,25 @@ class LinkedList(object):
         """Insert the given item at the head of this linked list.
         Running time: O(1), one step, simply adding item at beginning"""
         new_node = Node(item)
-        if self.head is not None:  # O(1), one step, just checking if empty
+        if self.head is not None:  # O(1) to check if list empty
             # newest node is prepended (becomes head node)
             new_node.next = self.head  # O(1) to reassign next pointer
             self.head = new_node  # O(1) to reassign head pointer
         else:
-            self.head = new_node  # O(1) to reassign head
-            self.tail = new_node  # O(1) to reassign tail
+            self.head = new_node  # O(1) to reassign head pointer
+            self.tail = new_node  # O(1) to reassign tail pointer
 
     def find(self, quality):
         """Return an item from this linked list satisfying the given quality.
         Best case running time: O(1), if data in first node?
         Worst case running time: O(n), if data not found"""
-        current_node = self.head  # O(1) to assign head
-        while current_node is not None:  # from 1 to n iterations, depends
-            if quality(current_node.data):  # O(1) to check quality
+        current_node = self.head  # O(1) to assign varaible
+        while current_node is not None:  # from 1 to n iterations, depends on list length and where item is
+            if quality(current_node.data):  # O(1) to check for matching quality
                 return current_node.data  # O(1) to return data
             else:
                 current_node = current_node.next  # O(1) to reassign varaible
-        if current_node == None:
+        if current_node == None:  # O(1) to check if node is None
             return None  # O(1) to return None
 
     # This method still needs to be tested
@@ -110,28 +110,30 @@ class LinkedList(object):
         """Delete the given item from this linked list, or raise ValueError.
         Best case running time: O(1) if LL empty or item at head
         Worst case running time: O(n), might traverse entire list"""
-        previous_node = None
-        # TODO: Loop through all nodes to find one whose data matches given item
-        current_node = self.head
-        while current_node is not None:
-            if current_node.data == item:
+        previous_node = None  # O(1) to assign varaible
+        # Loop through all nodes to find one whose data matches given item
+        current_node = self.head  # O(1) to assign varible
+        while current_node is not None:  # O(n)depending on how many nodes
+            if current_node.data == item:  # O(1) to check if node has item
+                # O(1) to check if head is tail
                 if current_node == self.head and current_node == self.tail:
-                    self.head = None
-                    self.tail = None
+                    self.head = None  # O(1) to assign
+                    self.tail = None  # O(1) to assign
                 elif current_node == self.head:
-                    self.head = current_node.next
-                    current_node.next = None
+                    self.head = current_node.next  # O(1) to assign
+                    current_node.next = None  # O(1) to assign
                 elif current_node == self.tail:
-                    self.tail = previous_node
-                    previous_node.next = None
+                    self.tail = previous_node  # O(1) to assign
+                    previous_node.next = None  # O(1) to assign
                 else:
-                    previous_node.next = current_node.next
-                    current_node.next = None
+                    previous_node.next = current_node.next  # O(1) to assign
+                    current_node.next = None  # O(1) to assign
                 return
             else:
                 previous_node = current_node
                 current_node = current_node.next
-        raise ValueError('Item not found: {}'.format(item))
+        raise ValueError('Item not found: {}'.format(item)
+                         )  # O(1) to return error
 
 
 def test_linked_list():
