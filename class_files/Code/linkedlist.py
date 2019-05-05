@@ -110,29 +110,28 @@ class LinkedList(object):
         """Delete the given item from this linked list, or raise ValueError.
         Best case running time: O(1) if LL empty or item at head
         Worst case running time: O(n), might traverse entire list"""
-        current_node = self.head
         previous_node = None
-        while current_node is not None:  # from 1 to n iterations, depends
-            if current_node.data == item
-            else:
-                current_node = current_node.next  # O(1) to reassign varaible
-            if current_node == None:
-                return None  # O(1) to return None
-
+        # TODO: Loop through all nodes to find one whose data matches given item
+        current_node = self.head
         while current_node is not None:
-
-            # If nothing in head, return error
-        if self.head is None:  # O(1) to check if head empty
-            raise ValueError('Item not found: {}'.format(item))
-
-        # If item in head, reassign head pointer to next node
-        if self.head.data == item:  # O(1) to check if item in 1st node
-            self.head == self.head.next  # O(1) to skip node w/ matching
-
-        # If something in LL, but not right item, check next node
-        while self.head is not None and self.head.data != item:
-            current_node = self.head
-            next_node = current_node.next
+            if current_node.data == item:
+                if current_node == self.head and current_node == self.tail:
+                    self.head = None
+                    self.tail = None
+                elif current_node == self.head:
+                    self.head = current_node.next
+                    current_node.next = None
+                elif current_node == self.tail:
+                    self.tail = previous_node
+                    previous_node.next = None
+                else:
+                    previous_node.next = current_node.next
+                    current_node.next = None
+                return
+            else:
+                previous_node = current_node
+                current_node = current_node.next
+        raise ValueError('Item not found: {}'.format(item))
 
 
 def test_linked_list():
