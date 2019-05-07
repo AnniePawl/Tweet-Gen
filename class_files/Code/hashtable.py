@@ -102,15 +102,15 @@ class HashTable(object):
 
     def delete(self, key):
         """Delete the given key from this hash table, or raise KeyError.
-        TODO: Running time: O(???) Why and under what conditions?"""
+        Running time: O(n) to find key right key and delete?"""
         index = self._bucket_index(key)  # O(1) to assign index
         bucket = self.buckets[index]  # O(1) to assign bucket
-        # TODO: Check if key-value entry exists in bucket
-        contains(self, key)
+        # Check if key-value entry exists in bucket
+        def key_matcher(key_val): return key_val[0] == key
+        entry_found = bucket.find(key_matcher)
 
-        # TODO: If found, delete entry associated with given key
-        # if found
-
+        if entry_found is not None:  # O()
+            bucket.delete(entry_found)  # O()
         else:
             # O(1) to raise error
             raise KeyError('Key not found: {}'.format(key))
