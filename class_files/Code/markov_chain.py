@@ -15,15 +15,14 @@ class Markov_Chain(dict):
 
     def make_chain(self, word_list):
         """Build Markov chain from word_list"""
+
         for index in range(len(self.word_list)-1):
             current_word = self.word_list[index]
             previous_word = self.word_list[index - 1]
-
-            if previous_word is None:
+        if previous_word is None:
 
     def markov_walk():
         markov_dictionary = {}  # store in dictionary
         # starts from some state, pick random transision, follow it, and repeat
 
-    # Make a sentence
     def make_sentence(markov_dictionary):

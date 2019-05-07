@@ -43,13 +43,12 @@ class HashTable(object):
 
     def items(self):
         """Return a list of all items (key-value pairs) in this hash table.
-        Running time: O(n) to collect all items and return"""
+        Running time: O(b*l) -> O(n) to collect all items and return"""
         all_items = []  # O(1) to create empty list
-        for bucket in self.buckets:  # O(n) iterate over all buckets
-            all_items.extend(bucket.items())
+        for bucket in self.buckets:  # O(b) iterate over all buckets
+            all_items.extend(bucket.items())  # O(l)
         return all_items  # O(1) to return a list
 
-    # Getting Error += int and type unsupported
     def length(self):
         """Return the number of key-value entries by traversing its buckets.
         Running time: O(b*l) => O(n), must traverse buckets and it's items to determine length"""
@@ -60,45 +59,39 @@ class HashTable(object):
 
     def contains(self, key):
         """Return True if this hash table contains the given key, or False.
-        Running time: O(1), item returned instantly w/ key"""
-        for bucket in self.buckets:  # O(b) to traverse buckets
-            for current_key, value in bucket.items():
-                # O(n) depends, to check if k-v entry exists in bucket
-                if current_key is key:
-                    return True  # O(1) to return boolean
-        return False  # O(1) to return boolean
+        Running time: O(l), l=bucket length, due to find method"""
+        index = self._bucket_index(key)  # O(1)
+        bucket = self.buckets[index]  # O(1)
+        item = bucket.find(lambda entry: entry[0] == key)   # O(l), l = length
+        return item is not None  # O(1) to check if item found
 
-    # TODO: Need some help, get some clarification !
     def get(self, key):
         """Return the value associated with the given key, or raise KeyError.
-        Running time: O(n) depends, iterate over buckets to find key"""
-        # TODO: Find bucket where given key belongs
-        # TODO: Check if key-value entry exists in bucket
-        index = self._bucket_index  # O(1) to assign index
-        bucket = self.buckets[index(key)]  # O(1) to assign bucket
-        def key_matcher(key_val): return key_val[0] == key  # (?)
-        entry_found = bucket.find(key_matcher)  # O(?)
-        if entry_found is not None:  # O(n) to find key
-            return entry_found[1]  # (1) to reutrn entry
+        Running time: O(l) due to find method"""
+        index = self._bucket_index(key)  # O(1) to assign index
+        bucket = self.buckets[index]  # O(1) to assign bucket
+        item_found = bucket.find(
+            lambda entry: entry[0] == key)   # O(l), l = length
+
+        if item_found is not None:  # O(n) to find key
+            return item_found[1]  # (1) to reutrn entry
         else:
             # O(1) to raise KeyError
             raise KeyError('Key not found: {}'.format(key))
 
-    # TODO: Need some help, get some clarification !
     def set(self, key, value):
         """Insert or update the given key with its associated value.
-        TODO: Running time: O(???) Why and under what conditions?"""
-        index = self._bucket_index  # O(1) to assign index
-        bucket = self.buckets[index(key)]  # O(1) to assign bucket
-
-        def key_matcher(key_val): return key_val[0] == key  # O(?)
-        entry_found = bucket.find(key_matcher)  # 0(l) with l = bucket.length()
+        Running time: O() """
+        index = self._bucket_index(key)  # O(1) to assign index
+        bucket = self.buckets[index]  # O(1) to assign bucket
+        entry_found = bucket.find(lambda pair: pair[0] == key)
+        entry = (key, value)
 
         if entry_found is not None:  # O(n) to find entry
             bucket.delete(entry_found)  # O(?) to delete item
-
-        entry_found = (key, value)  # O(1) to assign
-        bucket.append((key, value))  # O() to add new engry
+            bucket.append((key, value))  # O() to add new entry
+        else:
+            bucket.append((key, value))  # O() to add new entry
 
     def delete(self, key):
         """Delete the given key from this hash table, or raise KeyError.
