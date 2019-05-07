@@ -130,10 +130,10 @@ class LinkedList(object):
                     current_node.next = None  # O(1) to assign
                 return
             else:
-                previous_node = current_node
-                current_node = current_node.next
-        raise ValueError('Item not found: {}'.format(item)
-                         )  # O(1) to return error
+                previous_node = current_node  # O(1) to assign
+                current_node = current_node.next  # O(1) to assign
+        raise ValueError('Item not found: {}'.format(item))
+        # O(1) to return error
 
 
 def test_linked_list():

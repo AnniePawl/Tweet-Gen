@@ -17,8 +17,9 @@ class Markov_Chain(dict):
         """Build Markov chain from word_list"""
         for index in range(len(self.word_list)-1):
             current_word = self.word_list[index]
-            next_word = self.word_list[index + 1]
-            if
+            previous_word = self.word_list[index - 1]
+
+            if previous_word is None:
 
     def markov_walk():
         markov_dictionary = {}  # store in dictionary
