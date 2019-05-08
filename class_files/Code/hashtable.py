@@ -81,17 +81,16 @@ class HashTable(object):
 
     def set(self, key, value):
         """Insert or update the given key with its associated value.
-        Running time: O() """
-        index = self._bucket_index(key)  # O(1) to assign index
-        bucket = self.buckets[index]  # O(1) to assign bucket
+        Running time: O(l), l=bucket length """
+        index = self._bucket_index(key)  # O(1)
+        bucket = self.buckets[index]  # O(1)
         entry_found = bucket.find(lambda pair: pair[0] == key)
-        entry = (key, value)
+        entry = (key, value)  # O(l) due to find method
 
-        if entry_found is not None:  # O(n) to find entry
-            bucket.delete(entry_found)  # O(?) to delete item
-            bucket.append((key, value))  # O() to add new entry
-        else:
-            bucket.append((key, value))  # O() to add new entry
+        if entry_found is not None:  # Update old key w/ new value
+            bucket.delete(entry_found)  # O(l) worst case
+
+        bucket.append((key, value))  # O(1) to add item
 
     def delete(self, key):
         """Delete the given key from this hash table, or raise KeyError.
