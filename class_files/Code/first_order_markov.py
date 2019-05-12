@@ -27,6 +27,8 @@ def make_chain(word_list):
         # Make sure to pass in list
         else:
             markov[current_word] = Dictogram([next_word])
+    return markov
+    # print(markov)
 
 
 def markov_walk():
