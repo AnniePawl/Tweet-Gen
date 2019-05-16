@@ -2,7 +2,7 @@ import sys
 import random
 
 # Program accepts one argument (# of words)
-number = input("Enter a number: ")
+# number = input("Enter a number: ")
 
 
 def get_words(sample_text):
@@ -15,11 +15,11 @@ def get_words(sample_text):
 
 def random_sentence(words):
     """ randomly selects words from list and returns them as a properly formatted sentence (#TODO array?) """
-    random_words = random.choices(words, k=int(number))
+    random_words = random.choice(words)
     random_sentence = ' '.join(random_words)  # format sentence
     return random_sentence
 
 
 if __name__ == '__main__':
-    source = get_words('sample_text.txt')  # TODO
+    source = get_words('sample_text.txt')
     print(random_sentence(source))

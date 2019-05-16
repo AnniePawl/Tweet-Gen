@@ -1,8 +1,9 @@
+from pprint import pprint
 from random_dictionary_words import get_words
 from dictogram import Dictogram
 
 
-def make_markov_chain(word_list):
+def make_first_order_chain(word_list):
     """Build a first-order markov chain from word_list"""
     markov_dictionary = {}  # O(1)
     for index in range(len(word_list)-1):  # O(n)
@@ -17,17 +18,22 @@ def make_markov_chain(word_list):
             markov_dictionary[current_word] = Dictogram([next_word])
     return markov_dictionary  # O(1)
 
-# Start at random word
-
 
 def first_order_markov_sentence(markov_dictionary):
     """Start from some state, pick random transition, and generate a sentence based on relative probability"""
-    sentence = []  # O(1)
-    # start word = ?
-    # next word based on histogram of start word
+    words_list = []  # O(1)
+    # Choose start word at random from markov chain keys
+    start_word = random.choice(markov_dictionary.keys)
 
-    random_sentence = ' ' + next_word
-    # return random_sentence
+    # get historgram of all words following start word
+    markov_dictionary[start_word]
+    # use histogram to sample next word
+    next_word = markov_dictionary[start_word[]]
+    # new random word into words list
+    words_list.append(next_word)
+
+    random_sentence = ' '.join(words_list) + '.'
+    return random_sentence
 
 
 # def test_markov_chain():
@@ -43,4 +49,4 @@ if __name__ == "__main__":
     # create a word_list
     word_list = ["one", "fish", "two", "fish", "red", "fish", "blue", "fish"]
 
-    print(make_markov_chain(word_list))
+    pprint(make_first_order_chain(word_list))
