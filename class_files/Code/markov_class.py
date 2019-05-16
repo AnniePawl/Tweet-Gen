@@ -1,3 +1,7 @@
+from random_dictionary_words import get_words
+from dictogram import Dictogram
+
+
 class Markov_Chain(dict):
     def __init__(self, word_list):
         super(Markov_Chain, self).__init__()

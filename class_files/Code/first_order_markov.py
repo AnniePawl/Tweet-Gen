@@ -3,7 +3,7 @@ from dictogram import Dictogram
 
 
 def make_markov_chain(word_list):
-    """Build Markov chain from word_list"""
+    """Build a first-order markov chain from word_list"""
     markov_dictionary = {}  # O(1)
     for index in range(len(word_list)-1):  # O(n)
         current_word = word_list[index]  # O(1)
@@ -17,10 +17,17 @@ def make_markov_chain(word_list):
             markov_dictionary[current_word] = Dictogram([next_word])
     return markov_dictionary  # O(1)
 
+# Start at random word
 
-def markov_walk(markov):
-    """Start from some state, pick random transition, and genderate a sentence based on relative probability"""
+
+def first_order_markov_sentence(markov_dictionary):
+    """Start from some state, pick random transition, and generate a sentence based on relative probability"""
     sentence = []  # O(1)
+    # start word = ?
+    # next word based on histogram of start word
+
+    random_sentence = ' ' + next_word
+    # return random_sentence
 
 
 # def test_markov_chain():
@@ -32,7 +39,6 @@ def markov_walk(markov):
 #     markov_object = markov_chain.make_chain(word_list)
 #     # print the output
 #     print(markov_object)
-
 if __name__ == "__main__":
     # create a word_list
     word_list = ["one", "fish", "two", "fish", "red", "fish", "blue", "fish"]
