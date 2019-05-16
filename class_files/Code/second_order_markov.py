@@ -1,6 +1,7 @@
 from pprint import pprint
 from random_dictionary_words import get_words
 from dictogram import Dictogram
+import random
 
 # Consider start and stop tokens!
 
@@ -35,7 +36,7 @@ def second_order_markov_sentence(markov_dictionary):
     # get historgram of all words following start word
     markov_dictionary[start_word]
     # use histogram to sample next word
-    next_word =
+    # next_word = markov_dictionary[start_word[]]
     # new random word into words list
     words_list.append(next_word)
 
