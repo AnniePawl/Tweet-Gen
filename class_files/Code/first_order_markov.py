@@ -26,27 +26,23 @@ def first_order_markov_sentence(markov_dictionary):
     words_list = []  # O(1)
     # Choose start word at random from markov chain keys
     start_word = random.choice(list(markov_dictionary.keys()))
+    words_list.append(start_word)
 
-    # get historgram of all words following start word
-    histogram = markov_dictionary[start_word]
-    # use histogram to sample next word
-    next_word = sample_by_frequency(histogram)
-    # add new random word into words list
-    words_list.append(next_word)
+    last_word = start_word
+    for word in range(0, 20):
+        # get historgram of all words following start word
+        histogram = markov_dictionary[last_word]
+        # use histogram to sample next word
+        next_word = sample_by_frequency(histogram)
+        # add new random word into words list
+        words_list.append(next_word)
+        # reassign last word so when loop starts again, you start from new word
+        last_word = next_word
 
     random_sentence = ' '.join(words_list) + '.'
     return random_sentence
 
 
-# def test_markov_chain():
-#     # create a word_list
-#     word_list = ["one", "fish", "two", "fish", "red", "fish", "blue", "fish"]
-#     # create instance of Markov_Chain object
-#     markov_chain = Markov_Chain(word_list)
-#     # call make_chain on our Markov_Chain object
-#     markov_object = markov_chain.make_chain(word_list)
-#     # print the output
-#     print(markov_object)
 if __name__ == "__main__":
     # create a word_list
     word_list = ["one", "fish", "two", "fish", "red", "fish", "blue", "fish"]
