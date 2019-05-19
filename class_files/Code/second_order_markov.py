@@ -1,9 +1,8 @@
 from pprint import pprint
 from random_dictionary_words import get_words
+from stochastic import sample_by_frequency
 from dictogram import Dictogram
 import random
-
-# Consider start and stop tokens!
 
 
 def make_second_order_chain(word_list):
@@ -23,29 +22,33 @@ def make_second_order_chain(word_list):
         else:
             markov_dictionary[current_words] = Dictogram([next_word])
     return markov_dictionary  # O(1)
-    # print(markov_dictionary)
 
 
 def second_order_markov_sentence(markov_dictionary):
     """Start from some state, pick random transition, and generate a sentence based on relative probability"""
-    words_list = []  # O(1)
+    word_list = []  # O(1)
     # Choose start word at random from markov chain keys
-    start_word = random.choice(markov_dictionary.keys)
+    start_words = random.choice(list(markov_dictionary.keys()))
+    word_list.append(start_words)
+    last_word = start_words
+    for word in range(0, 20):
+        # get historgram of all words following start word
+        histogram = markov_dictionary[last_word]
+        # use histogram to sample next word
+        next_words = sample_by_frequency(histogram)
+        # add new random word into words list
+        word_list.append(next_words)
+        # reassign last word so when loop starts again, you start from new word
+        last_words = next_words
 
-    # get historgram of all words following start word
-    markov_dictionary[start_word]
-    # use histogram to sample next word
-    # next_word = markov_dictionary[start_word[]]
-    # new random word into words list
-    words_list.append(next_word)
-
-    random_sentence = ' '.join(words_list) + '.'
+    random_sentence = ' '.join(word_list) + '.'
     return random_sentence
 
 
 if __name__ == "__main__":
     # create a word_list
     word_list = ["one", "fish", "two", "fish", "red", "fish", "blue", "fish"]
-    cat_sentence = "I like cats and you like cats"
-    cat_word_list = cat_sentence.split()
-    pprint(make_second_order_chain(cat_word_list))
+
+    markov_dictionary = make_second_order_chain(word_list)
+    pprint(markov_dictionary)
+    pprint(second_order_markov_sentence(markov_dictionary))
