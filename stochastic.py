@@ -13,10 +13,10 @@ def histogram(phrase):
     return dict_histogram
 
 
-def sample_by_frequency(dict_histogram, t):
+def sample_by_frequency(dict_histogram):
     """ Returns a random word selected based on relative probability """
-    random_num = random.uniform(0, t)
-    # random.random()
+    total_tokens = sum(dict_histogram.values())
+    random_num = random.uniform(0, total_tokens)
     num = 0
     for word in dict_histogram:
         count = dict_histogram[word]
@@ -33,7 +33,7 @@ if __name__ == '__main__':
     # Try Sum Function - Store once and hold in variable b/c total tokens will remain the same
     words = []
     for _ in range(0, 100000):
-        words.append(sample_by_frequency(bugs, len(sample_list)))
+        words.append(sample_by_frequency(phrase))
     # print(words)
 
     print(histogram(words))
