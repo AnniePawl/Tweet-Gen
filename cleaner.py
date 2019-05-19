@@ -1,12 +1,14 @@
-with open('sample_text.tx') as f:
+with open('hitchhikers.txt') as f:
     text = f.read()
-    punctuations = '''!()-[]{};:'"\,<>./?@#$%^&*_~”“’'''
+    punctuation = '''!()-[]{};:'"\,<>./?@#$%^&*_~”“’'''
     no_punctuation = ""
 
     for character in text:
-        if character not in punctuations:
+        if character not in punctuation:
             no_punctuation = no_punctuation + character
 
     no_punctuation.lower()
 
     formatted_words_array = no_punctuation.split()
+
+print(formatted_words_array)
