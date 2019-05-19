@@ -19,17 +19,6 @@ def first_order_sentence_builder():
 
     return HTML.format(first_order_markov_sentence(make_first_order_chain(formatted_words_array)))
 
-
-if __name__ == "__main__":
-    # create a word_list
-
-    def second_order_sentence_builder():
-        pass
-        return HTML.format(second_order_markov_sentence(make_second_order_chain(words_array)))
-
-    def random_bugs():
-        pass
-        """ For testing purposes: Returns a random bug """
-        bugs = histogram('spider ant butterfly'.split())
-        random_bug = sample_by_frequency(bugs)
-        return HTML.format(random_bug)
+  # def second_order_sentence_builder():
+  #     pass
+  #     return HTML.format(second_order_markov_sentence(make_second_order_chain(words_array)))

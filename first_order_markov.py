@@ -29,7 +29,7 @@ def first_order_markov_sentence(markov_dictionary):
     words_list.append(start_word)
 
     last_word = start_word
-    for word in range(0, 20):
+    for word in range(0, 10):
         # get historgram of all words following start word
         histogram = markov_dictionary[last_word]
         # use histogram to sample next word
