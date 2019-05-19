@@ -4,11 +4,6 @@ from first_order_markov import make_first_order_chain, first_order_markov_senten
 from second_order_markov import make_second_order_chain, second_order_markov_sentence
 from cleaner import formatted_words_array
 
-HTML = """<html>
-<h1>Anna's Random Sentence Generator</h1>
-<h2>MVP<h2>
-<h3>{}</h3>
-</html> """
 
 app = Flask(__name__)
 
@@ -22,3 +17,9 @@ def first_order_sentence_builder():
   # def second_order_sentence_builder():
   #     pass
   #     return HTML.format(second_order_markov_sentence(make_second_order_chain(words_array)))
+
+
+HTML = """<html style="background: radial-gradient(circle at 75%, #333, #333, #616366 50%, #eee 50%, #5f6266 65%)";>
+<h1 style="color:#5bd838; font-size: 70px; font-family: sans-serif">Hitchhiker's Guide to the Galaxy</br> Random Sentence Generator</h1>
+<h3 style="color:white; font-size: 40px; font-family: sans-serif;">{}</h3>
+</html> """

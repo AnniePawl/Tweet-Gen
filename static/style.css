@@ -1,0 +1,15 @@
+import < link href = "https://fonts.googleapis.com/css?family=Audiowide&display=swap" rel = "stylesheet" >
+
+body {
+  width: 100%;
+  min-height: 40em;
+  height: 100%;
+}
+
+html {
+  background:red;
+}
+
+h1 { 
+  color:white;
+}
