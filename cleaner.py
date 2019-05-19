@@ -1,6 +1,7 @@
+# -*- coding: utf-8 - *-
 with open('hitchhikers.txt') as f:
     text = f.read()
-    punctuation = '''()-[]{};:'"\,<>./?@#$%^&*_~”“’'''
+    punctuation = '''()-[]{};:'"\,<>./?@$%#^&*_~”“’'''
     space = "!"
     no_punctuation = ""
 
